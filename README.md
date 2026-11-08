@@ -1,13 +1,21 @@
-# Brawl Box 2.1
+# Brawl Box — оригинальная сборка с управлением игроками
 
-Browser game with a loading screen and role administration (Developer / Moderator).
+Основа: предоставленный пользователем архив `brawl-box-deploy.tar.gz` (игра с ящиками, коллекцией бойцов и ареной).
 
-## Run locally
-Extract `brawl-box-release.zip` into a new folder, run `node server.js`. Then open http://localhost:3000.
+## Обновление
 
-Set a strong `OWNER_CLAIM_TOKEN` environment variable on the server before starting. The first owner can claim Developer access with this secret; never commit the secret into GitHub.
+- Загрузочный экран и иконки iPhone/Android
+- Серверные ID игроков, список привилегий
+- Панель разработчика для подтверждённого ID `#6E82DE5DB6F8`
+- Поиск по ID; выдача/снятие ролей «Разработчик», «Модератор»
+- Блокировка и разблокировка аккаунтов
 
-## Render
-Docker web service using the included Dockerfile. Assets and game code are packaged inside `brawl-box-release.zip`. The server is required for shared roles. Free Render instances have ephemeral storage; sessions/roles reset on instance replacement unless using a durable data store.
+Файлы оригинальной игры `game.js`, `roster.js` и изображения сохранены.
 
-No real-time multiplayer battles are included.
+## Развёртывание
+
+Render Docker web service использует `Dockerfile`. Содержимое полного приложения — `brawl-box-release.zip`. Задайте `OWNER_CLAIM_TOKEN` как закрытый секрет в настройках Render. Не публикуйте секрет в репозитории.
+
+На бесплатном Render используется временная файловая система: роли и бан-лист могут сбрасываться при перезапуске или новой сборке. Для постоянного хранения нужна внешняя БД или диск.
+
+Игровой прогресс пока хранится в локальном браузере. Сетевых боёв между друзьями в исходной игре нет.
